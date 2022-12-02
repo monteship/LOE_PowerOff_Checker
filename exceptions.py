@@ -1,0 +1,2 @@
+class InvalidGroupNumber(ValueError):
+    pass
