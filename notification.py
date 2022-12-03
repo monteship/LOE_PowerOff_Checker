@@ -1,4 +1,3 @@
-import time
 import platform
 from win10toast import ToastNotifier
 
@@ -21,7 +20,7 @@ class Notify:
         try:
             toaster = ToastNotifier()
             toaster.show_toast(title="",
-                               msg='{}\n{}\n{}'.format(text[1], '-' * 59, text[0]),
+                               msg=text,
                                duration=15)
         except TypeError:
             """

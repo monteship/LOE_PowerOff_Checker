@@ -1,2 +1,0 @@
-class InvalidGroupNumber(ValueError):
-    pass
