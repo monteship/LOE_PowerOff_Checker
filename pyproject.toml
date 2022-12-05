@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "loe-poweroff-checker"
+version = "0.1.1"
+description = "Used to scrap information about poweroff in Lviv region"
+authors = ["Misha Ship <monteship@gmail.com>"]
+readme = "README.md"
+packages = [{include = "loe_poweroff_checker"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+requests = "^2.28.1"
+pandas = "^1.5.2"
+notify-py = "^0.3.3"
+lxml = "^4.9.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

@@ -2,7 +2,8 @@ import time
 import sched
 import requests
 import pandas as pd
-from notification import Notify
+from notifypy import Notify
+
 
 s = sched.scheduler(time.time, time.sleep)
 
@@ -22,7 +23,7 @@ class PowerOffLoe:
     def __run(self):
         self.__scrap_page()
         self.__get_accident()
-        Notify(self.result)
+        self.__send_notify()
 
     def __scrap_page(self):
         try:
@@ -37,13 +38,22 @@ class PowerOffLoe:
     def __get_accident(self):
         try:
             table = self.tables[2]
+            print(table.values)
             self.result = "В {2}.\n{5}, {6}.\nЗ {7} \nПо {8}.".format(*table.values[0])
         except AttributeError:
             self.result = f"В {self.address[0].capitalize()} аварійних відключень непередбачено!"
+        except IndexError:
+            self.result = f"В {self.address[0].capitalize()} аварійних відключень непередбачено!"
+
+    def __send_notify(self):
+        notification = Notify()
+        notification.title = "PowerOffLoe"
+        notification.message = self.result
+        notification.send()
 
 
 def start(sc):
-    city = ""
+    city = ''
     street = ''
     otg = ''
     PowerOffLoe(city, street, otg)
